@@ -1,0 +1,23 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: opsera-sunny-skies-app-dev
+
+resources:
+  - ../../base
+
+labels:
+  - includeSelectors: false
+    pairs:
+      environment: dev
+      tenant: opsera
+      managed-by: opsera-c2c
+
+images:
+  - name: PLACEHOLDER_ECR_URI
+    newName: PLACEHOLDER_ECR_URI
+    newTag: latest
+
+replicas:
+  - name: sunny-skies-app
+    count: 2

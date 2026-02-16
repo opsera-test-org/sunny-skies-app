@@ -1,0 +1,24 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: sunny-skies-app
+  namespace: opsera-sunny-skies-app-dev
+  labels:
+    app: sunny-skies-app
+    tenant: opsera
+    managed-by: opsera-c2c
+  annotations:
+    kubernetes.io/ingress.class: nginx
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: sunny-skies-app-dev.agent.opsera.dev
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: sunny-skies-app
+            port:
+              number: 80
